@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Razas de Perros</title>
+</head>
+<body>
+    <label for="razas">Razas:</label>
+    <select id="razas"></select>
+    <button id="peticion">Mostrar Imagen</button>
+    <br>
+    <img id="imagen" src="" alt="Imagen de la raza seleccionada">
+    
+    <script>
+        window.onload = function() {
+            fetch("https://dog.ceo/api/breeds/list/all")
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    let razas = Object.keys(data.message);
+                    console.log(razas);
+                    razas.forEach(elemento => {
+                        let opcion = document.createElement('option');
+                        opcion.value = elemento;
+                        opcion.text = elemento;
+                        document.getElementById('razas').appendChild(opcion);
+                    });
+                });
+
+            document.getElementById('peticion').addEventListener("click", () => {
+                let razaSeleccionada = document.getElementById('razas').value;
+                let url = `https://dog.ceo/api/breed/${razaSeleccionada}/images/random`;
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        let imageUrl = data.message;
+                        document.getElementById('imagen').src = imageUrl;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
