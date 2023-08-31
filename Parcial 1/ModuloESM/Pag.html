@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="BtnESM">ESM </button>
+    <DIV id="divi">
+
+    </DIV>
+<script>
+    document.getElementById("BtnESM").addEventListener("click", function(){
+        import("./index.js")
+            .then(function(module){
+                document.getElementById("divi").textContent=module.obtieneFrase(1)
+            })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "modulin",
+  "version": "1.0.0",
+  "description": "Instalación del modulo: ```bash  $ npm install paket ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
