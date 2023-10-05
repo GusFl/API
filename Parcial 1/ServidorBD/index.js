@@ -7,9 +7,15 @@ const mysql = require('mysql2/promise');
 const app = express();
 app.use(cors())
 
+app.use(express.urlencoded({extended:true}));
+
 
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'),{flags:'a'})
 app.use(morgan('combined', {stream: accessLogStream}));
+
+app.post("/alumnos",(req,res)=>{
+    res.send("Servidor express contestando a peticion POST")
+});
 
 app.get("/usuarios", async(req,res)=>{
     try{
